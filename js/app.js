@@ -46,10 +46,11 @@ Store.prototype.render = function(){
       var firstCell = document.createElement('td');
       trFirstRow.appendChild(firstCell);
       firstCell.textContent = this.location; 
+      
       for (let i = 0; i < hourWork.length; i++) {
           var tdSecCell = document.createElement('td');
           trFirstRow.appendChild(tdSecCell);
-          tdSecCell.textContent = this.productSalesFun[i];    
+          tdSecCell.textContent = this.productSales[i];    
       }
        var finalCell = document.createElement('td');
        trFirstRow.appendChild(finalCell);
@@ -62,7 +63,7 @@ Store.prototype.render = function(){
             var StoreContainer = document.getElementById('sales');
             var tableEl = document.createElement('table');
             StoreContainer.appendChild(tableEl);
-            document.getElementByTagName('tr');
+          
             
             var trEl = document.createElement('tr');
             tableEl.appendChild(trEl);
