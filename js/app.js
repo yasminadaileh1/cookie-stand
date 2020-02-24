@@ -18,8 +18,8 @@ var seatle =
 
     calculate: function(){
         for (let f = 0; f < this.cusNum.length; f++) {
-          this.productSales.push(this.cusNum[f] * this.avgSale);
-          
+          this.productSales.push(this.cusNum[f] *this.avgSale);
+          this.productSales[f] = parseInt(this.productSales[f]);
         }
         console.log(this.productSales);
     },
