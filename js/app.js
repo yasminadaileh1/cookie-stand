@@ -68,7 +68,7 @@ function Store(location, minCustomer, maxCustomer, avgSale) {
 
 var StoreContainer = document.getElementById('sales');
 var tableEl = document.createElement('table');
-StoreContainer.appendChild(tableEl);
+StoreContainer.appendChild (tableEl);
 
 
 var trEl = document.createElement('tr');

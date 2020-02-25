@@ -1,4 +1,10 @@
-        th{
+      
+      body{
+        background-color:rgb(175, 199, 161) ;
+        line-height: 28px;
+        background-image: url("https://www.publicdomainpictures.net/pictures/300000/nahled/artistic-fish-background.jpg");
+      }
+      th{
         padding: 20px;
         border: 10px solid black;
         font-size: 20px;
@@ -10,3 +16,55 @@
             border: 10px solid black;
             font-size: 20px;
             }
+
+        h1{
+           
+            color: #1f0dfb;
+            background: center;
+            background-color: #c0d0dd;
+            font-size: 70px;
+            padding: 50px;
+            border: 5px groove #2008f4;
+            font-family: cursive;
+            text-align: center;
+            position: sticky;
+            background-repeat: no-repeat;
+            margin: 31px;
+        }
+
+      a{
+        display: contents;
+    color: aliceblue;
+    -webkit-text-stroke: thin;
+    text-align: center;
+    font-size: 30px;
+      }
+      p{
+        font-style: italic;
+        font-weight: 500;
+        padding: 45px;
+        background-color: #c0d0dd;;
+        line-height: 25px;
+        font-size: 25px;
+        font-family: cursive;
+        padding: 35px;
+        line-height: 1.25;
+        display: block;
+        
+      }
+
+      img{
+           float: left; 
+           margin-right: 10px;
+        }
+        
+        div{
+            padding: 10px;
+            border: 3px solid rgb(16, 44, 20);
+            margin: 50px ;
+            background-color: #c0d0dd;;
+            display: inline-block;
+         }
+
+       
+        
