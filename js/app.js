@@ -100,7 +100,7 @@ newBranch.addEventListener('submit', function(event){
     renderFooter();
  
 });
-
+ //fun
     
 function renderFooter(){
     var footerTr = document.createElement('tr');
