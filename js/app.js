@@ -12,6 +12,7 @@ var cookiesStore = [];
 
 var container = document.getElementById('sales');
 var tableEl = document.createElement('table');
+
 container.appendChild(tableEl);
 
 
@@ -84,6 +85,8 @@ function renderHeader(){
 }
 
 
+
+
 var newBranch = document.getElementById('addNew');
 newBranch.addEventListener('submit', function(event){
     event.preventDefault();
@@ -92,9 +95,9 @@ newBranch.addEventListener('submit', function(event){
     var maxCustomer = event.target.maxCustomer.value;
     var avgSale = event.target.avgSale.value;
    var newStore = new Store( location , minCustomer , maxCustomer , avgSale);
-
+   tableEl.deleteRow(tableEl.rows.length- 1);
    newStore.render();
-
+    renderFooter();
  
 });
 
@@ -134,7 +137,7 @@ function renderFooter(){
 
 
 
-
+   
 
 
 
