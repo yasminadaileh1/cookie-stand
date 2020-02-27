@@ -1,7 +1,6 @@
 'use strict'
 
-var hourWork = [6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8];
-
+var hourWork = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 function getRandomCus(minCustomer, maxCustomer) {
     minCustomer = Math.ceil(minCustomer);
@@ -9,7 +8,11 @@ function getRandomCus(minCustomer, maxCustomer) {
 
     return Math.floor(Math.random() * (maxCustomer - minCustomer)) + minCustomer;
 }
+var cookiesStore = [];
 
+var container = document.getElementById('sales');
+var tableEl = document.createElement('table');
+container.appendChild(tableEl);
 
 
 
@@ -21,140 +24,149 @@ function Store(location, minCustomer, maxCustomer, avgSale) {
     this.cusNum = [];
     this.productSales = [];
     this.totalCookie = 0;
-    this.totalEl = 0;
-    this.tdTotalAll = 0;
+    cookiesStore.push(this);
+    this.productSalesFun();
+}
 
 
-    Store.prototype.cusNumFun = function () {
-        for (var i = 0; i < hourWork.length; i++) {
-            var randomNum = getRandomCus(this.minCustomer, this.maxCustomer);
-            this.cusNum.push(randomNum);
-        }
-    };
-    Store.prototype.productSalesFun = function () {
-        for (let f = 0; f < hourWork.length; f++) {
-            this.productSales.push(Math.floor(this.cusNum[f] * this.avgSale));
-            console.log(this.productSales);
+    Store.prototype.productSalesFun = function(){
+        for (let f = 0; f < hourWork.length; f++){
+            this.productSales.push(Math.floor(getRandomCus(this.minCustomer, this.maxCustomer) * this.avgSale));
             this.totalCookie += this.productSales[f];
 
 
         }
     };
 
-    Store.prototype.render = function () {
-        document.getElementsByTagName('table');
+    Store.prototype.render = function(){
         var trFirstRow = document.createElement('tr');
         tableEl.appendChild(trFirstRow);
-        document.getElementsByTagName(trFirstRow);
         var firstCell = document.createElement('td');
         trFirstRow.appendChild(firstCell);
         firstCell.textContent = this.location;
 
-        for (let i = 0; i < hourWork.length; i++) {
-            var tdSecCell = document.createElement('td');
-            trFirstRow.appendChild(tdSecCell);
-            tdSecCell.textContent = this.productSales[i];
+        for (let f = 0; f < hourWork.length; f++) {
+            var secCell = document.createElement('td');
+            trFirstRow.appendChild(secCell);
+            secCell.textContent = this.productSales[f];    
         }
-      
+        var totalTd = document.createElement('td');
+        trFirstRow.appendChild(totalTd);
+        totalTd.textContent = this.totalCookie;
+    };
 
-        var finalCell = document.createElement('td');
-        trFirstRow.appendChild(finalCell);
-        finalCell.textContent = this.totalCookie;
+   
+    
+
+new Store('seatle', '23', '65', '6.3');
+new Store('Tokyo', '3', '24', '1.2');
+new Store('Dubai', '11', '38', '3.7');
+new Store('Paris', '20', '38', '2.3');
+new Store('Lami', '2', '16', '4.6');
+
+function renderHeader(){
+    var headTr = document.createElement('tr');
+    tableEl.appendChild(headTr);
+    var emptyTh = document.createElement('th')
+    headTr.appendChild(emptyTh);
+
+    for (var i = 0; i < hourWork.length; i++) {
+        var hourTh = document.createElement('th');
+        headTr.appendChild(hourTh);
+        hourTh.textContent = hourWork[i];
+       
     }
+    var totalTh = document.createElement('th');
+    headTr.appendChild(totalTh);
+    totalTh.textContent = 'total';
+
 
 }
 
 
+var newBranch = document.getElementById('addNew');
+newBranch.addEventListener('submit', function(event){
+    event.preventDefault();
+    var location = event.target.location.value;
+    var minCustomer = event.target.minCustomer.value;
+    var maxCustomer = event.target.maxCustomer.value;
+    var avgSale = event.target.avgSale.value;
+   var newStore = new Store( location , minCustomer , maxCustomer , avgSale);
 
-var StoreContainer = document.getElementById('sales');
-var tableEl = document.createElement('table');
-StoreContainer.appendChild (tableEl);
+   newStore.render();
 
+ 
+});
 
-var trEl = document.createElement('tr');
-tableEl.appendChild(trEl);
-var thEl = document.createElement('th');
-trEl.appendChild(thEl);
+    
+function renderFooter(){
+    var footerTr = document.createElement('tr');
+    tableEl.appendChild(footerTr);
+    var totalFooter = document.createElement('td');
+    footerTr.appendChild(totalFooter);
+    totalFooter.textContent = 'Total';
 
-for (var i = 0; i < hourWork.length; i++) {
-    var th1El = document.createElement('th');
-    th1El.textContent = hourWork[i];
-    trEl.appendChild(th1El);
-}
-var th3El = document.createElement('th');
-trEl.appendChild(th3El);
-th3El.textContent = 'total';
-
-
-
-
-
-
-
-
-
-var store1 = new Store('seatle', 23, 65, 6.3);
-var store2 = new Store('Tokyo', 3, 24, 1.2);
-var store3 = new Store('Dubai', 11, 38, 3.7);
-var store4 = new Store('Paris', 20, 38, 2.3);
-var store5 = new Store('Lami', 2, 16, 4.6);
-
-store1.cusNumFun();
-store1.productSalesFun();
-store1.render();
-
-
-
-store2.cusNumFun();
-store2.productSalesFun();
-store2.render();
-
-
-store3.cusNumFun();
-store3.productSalesFun();
-store3.render();
-
-
-store4.cusNumFun();
-store4.productSalesFun();
-store4.render();
-
-store5.cusNumFun();
-store5.productSalesFun();
-store5.render();
-
-
-// Total raw
-var total = 0;
-var trSecRow = document.createElement('tr');
-tableEl.appendChild(trSecRow);
-document.getElementsByTagName(trSecRow);
-var tdtotal = document.createElement('td');
-trSecRow.appendChild(tdtotal);
-tdtotal.textContent = 'total';
-for (let i = 0; i < hourWork.length; i++) {
-    var totalEl = document.createElement('td');
-    trSecRow.appendChild(totalEl);
-    totalEl.textContent = store1.productSales[i] + store2.productSales[i] + store3.productSales[i] + store4.productSales[i] + store5.productSales[i];
-};
-var tdTotalAll = document.createElement('td');
-trSecRow.appendChild(tdTotalAll);
-
-tdTotalAll.textContent = store1.totalCookie + store2.totalCookie+store3.totalCookie +store4.totalCookie +store5.totalCookie;
+          var totalHour;
+          var totalOftotal = 0;
+        for (let h = 0; h < hourWork.length ; h++){
+             totalHour = 0;
+             for (let s = 0; s < cookiesStore.length; s++) {
+                 totalHour += cookiesStore[s].productSales[h];
+             }
+             var tdHourTotal = document.createElement('td');
+             footerTr.appendChild(tdHourTotal);  
+             tdHourTotal.textContent = totalHour;
+             totalOftotal += totalHour;
+            
+            }
+        
+            var TotalAll = document.createElement('td');
+            footerTr.appendChild(TotalAll);
+            TotalAll.textContent = totalOftotal;
+            
+        } 
+    renderHeader();
+    for (let i = 0; i < cookiesStore.length; i++){
+        cookiesStore[i].render();
+        
+    }   
+    renderFooter();     
 
 
 
 
-// var container = document.getElementById("sales");
-//             this.cusNum = getRandomCus(this.minCustomer,this.maxCustomer);
-//             var articleEl = document.createElement('article');
-//             container.appendChild(articleEl);
-//             var h2El = document.createElement('h2');
-//             articleEl.appendChild(h2El);
-//             h2El.textContent = Store;
-//             var ulEl = document.createElement('ul')
-//             articleEl.appendChild(ulEl);
-//               for(var i = 0 ; i < hourWork.length ; i++){
-//                var liEl = document.createElement('li');
-//                liEl.textContent = `${hourWork[i]}: ${this.productSales[i]} cookies`;
-//                ulEl.appendChild(liEl);
+
+
+
+
+
+
+
+
+
+
+// store1.cusNumFun();
+// store1.productSalesFun();
+// store1.render();
+
+
+
+// store2.cusNumFun();
+// store2.productSalesFun();
+// store2.render();
+
+
+// store3.cusNumFun();
+// store3.productSalesFun();
+// store3.render();
+
+
+// store4.cusNumFun();
+// store4.productSalesFun();
+// store4.render();
+
+// store5.cusNumFun();
+// store5.productSalesFun();
+// store5.render();
+
+
