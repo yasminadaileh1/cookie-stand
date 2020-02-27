@@ -12,6 +12,7 @@ var cookiesStore = [];
 
 var container = document.getElementById('sales');
 var tableEl = document.createElement('table');
+
 container.appendChild(tableEl);
 
 
@@ -45,7 +46,7 @@ function Store(location, minCustomer, maxCustomer, avgSale) {
         trFirstRow.appendChild(firstCell);
         firstCell.textContent = this.location;
 
-        for (let f = 0; f < hourWork.length; f++) {
+        for (let f = 0; f < hourWork.length; f++){
             var secCell = document.createElement('td');
             trFirstRow.appendChild(secCell);
             secCell.textContent = this.productSales[f];    
@@ -67,10 +68,10 @@ new Store('Lami', '2', '16', '4.6');
 function renderHeader(){
     var headTr = document.createElement('tr');
     tableEl.appendChild(headTr);
-    var emptyTh = document.createElement('th')
+    var emptyTh = document.createElement('th');
     headTr.appendChild(emptyTh);
 
-    for (var i = 0; i < hourWork.length; i++) {
+    for (var i = 0; i < hourWork.length; i++){
         var hourTh = document.createElement('th');
         headTr.appendChild(hourTh);
         hourTh.textContent = hourWork[i];
@@ -84,6 +85,8 @@ function renderHeader(){
 }
 
 
+
+
 var newBranch = document.getElementById('addNew');
 newBranch.addEventListener('submit', function(event){
     event.preventDefault();
@@ -92,8 +95,9 @@ newBranch.addEventListener('submit', function(event){
     var maxCustomer = event.target.maxCustomer.value;
     var avgSale = event.target.avgSale.value;
    var newStore = new Store( location , minCustomer , maxCustomer , avgSale);
-
+   tableEl.deleteRow(tableEl.rows.length- 1);
    newStore.render();
+   renderFooter();
 
  
 });
@@ -134,7 +138,7 @@ function renderFooter(){
 
 
 
-
+   
 
 
 
