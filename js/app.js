@@ -149,28 +149,3 @@ function renderFooter(){
 
 
 
-// store1.cusNumFun();
-// store1.productSalesFun();
-// store1.render();
-
-
-
-// store2.cusNumFun();
-// store2.productSalesFun();
-// store2.render();
-
-
-// store3.cusNumFun();
-// store3.productSalesFun();
-// store3.render();
-
-
-// store4.cusNumFun();
-// store4.productSalesFun();
-// store4.render();
-
-// store5.cusNumFun();
-// store5.productSalesFun();
-// store5.render();
-
-
