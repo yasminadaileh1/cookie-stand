@@ -94,11 +94,14 @@ newBranch.addEventListener('submit', function(event){
     var minCustomer = event.target.minCustomer.value;
     var maxCustomer = event.target.maxCustomer.value;
     var avgSale = event.target.avgSale.value;
+    if(minCustomer>maxCustomer){
+        alert( 'please make sure your maximum number is bigger than minimum')
+    }else{
    var newStore = new Store( location , minCustomer , maxCustomer , avgSale);
    tableEl.deleteRow(tableEl.rows.length- 1);
    newStore.render();
    renderFooter();
-
+}
  
 });
  //fun
